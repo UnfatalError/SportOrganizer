@@ -1,0 +1,22 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create Organizer";
+}
+
+<h4>Create Organizer</h4>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="organizerName" class="form-label">Organizer Name:</label>
+        <input type="text" class="form-control" id="organizerName" name="organizerName" asp-for="Organizer.OrganizerName" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="imageLocation" class="form-label">Image Location (URL):</label>
+        <input type="text" class="form-control" id="imageLocation" name="imageLocation" asp-for="Organizer.ImageLocation" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Organizer</button>
+    <a asp-page="/Organizers/Index" asp-route-pageUrl="@Model.LastPageUrl" class="btn btn-secondary">Cancel</a>
+</form>

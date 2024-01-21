@@ -1,0 +1,15 @@
+﻿@page
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete Sport Event";
+}
+
+<h4>Delete Sport Event</h4>
+
+<p>Are you sure you want to delete this event ? This action can't be undone.<p>
+
+<form method="post">
+    <input type="hidden" asp-for="SportEventId" />
+    <button type="submit" class="btn btn-danger">Yes</button>
+    <a asp-page="/Organizers/OrganizerDetails" asp-route-id="@Model.OrganizerId" class="btn btn-secondary">Cancel</a>
+</form>

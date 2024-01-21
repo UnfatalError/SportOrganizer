@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Organizers";
+}
+
+<h1 class="mb-4">Organizers</h1>
+<a asp-page="/Organizers/Create" asp-route-lastPageUrl="@Model.CurrentPageUrl" class="btn btn-primary mb-4">Create</a>
+
+@if (Model.Organizers != null && Model.Organizers.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 100px">Name</th>
+                <th>Image Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var organizer in Model.Organizers)
+            {
+                <tr>
+                    <td>@organizer.OrganizerName</td>
+                    <td>@organizer.ImageLocation</td>
+                    <td class="text-end">
+                        <a asp-page="/Organizers/OrganizerDetails" asp-route-id="@organizer.Id" asp-route-lastPageUrl="@Model.CurrentPageUrl" class="btn btn-outline-dark"><i class="fa-solid fa-bars"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between mb-4">
+        @if (!string.IsNullOrEmpty(Model.PreviousPageUrl))
+        {
+            <div>
+                <a asp-route-pageUrl="@Model.PreviousPageUrl" class="btn btn-secondary">Previous Page</a>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.NextPageUrl))
+        {
+            <div class="ms-auto">
+                <a asp-route-pageUrl="@Model.NextPageUrl" class="btn btn-secondary">Next Page</a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No organizers were found.</p>
+}

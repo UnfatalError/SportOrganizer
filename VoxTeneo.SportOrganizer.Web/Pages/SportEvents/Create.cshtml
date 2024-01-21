@@ -1,0 +1,27 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create Sport Event";
+}
+
+<h4>Create Sport Event</h4>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="eventName" class="form-label">Event Name:</label>
+        <input type="text" class="form-control" id="eventName" name="eventName" asp-for="SportEvent.EventName" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="eventType" class="form-label">Event Type:</label>
+        <input type="text" class="form-control" id="eventType" name="eventType" asp-for="SportEvent.EventType" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="eventDate" class="form-label">Event Date:</label>
+        <input type="date" class="form-control" id="eventDate" name="eventDate" asp-for="SportEvent.EventDate" value="@DateTime.Now.ToString("dd/MM/yyyy")" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Sport Event</button>
+    <a asp-page="/Organizers/OrganizerDetails" asp-route-id="@Model.OrganizerId" class="btn btn-secondary">Cancel</a>
+</form>

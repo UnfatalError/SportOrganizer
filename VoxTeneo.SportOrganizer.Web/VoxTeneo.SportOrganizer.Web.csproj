@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VoxTeneo.SportOrganizer.Application\VoxTeneo.SportOrganizer.Application.csproj" />
+    <ProjectReference Include="..\VoxTeneo.SportOrganizer.Infrastructure\VoxTeneo.SportOrganizer.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

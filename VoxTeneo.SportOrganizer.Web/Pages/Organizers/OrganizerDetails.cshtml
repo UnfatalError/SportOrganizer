@@ -1,0 +1,66 @@
+﻿@page
+@model OrganizerDetailsModel
+@{
+    ViewData["Title"] = "Organizer Details";
+}
+
+<h2 class="mb-4">Organizer details</h2>
+
+<div class="mb-4">
+    <dl class="row">
+        <dt class="col-sm-2">Organizer Name</dt>
+        <dd class="col-sm-10">@Model.Organizer.OrganizerName</dd>
+
+        <dt class="col-sm-2">Image Location</dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Organizer.ImageLocation" alt="No image available." class="img-fluid" style="max-height: 256px;" />
+        </dd>
+    </dl>
+</div>
+
+<div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h4 class="col-sm-8 mb-0">Sport Events</h4>
+    </div>
+
+    <div class="mt-2">
+        <a asp-page="/SportEvents/Create" asp-route-organizerId="@Model.Organizer.Id" class="btn btn-primary">Create</a>
+    </div>
+
+    @if (Model.SportEvents == null || !Model.SportEvents.Any())
+    {
+        <div class="col-sm-12 mt-2">No events found.</div>
+    }
+    else
+    {
+        <div class="table-responsive mt-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Event Type</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sportEvent in Model.SportEvents)
+                    {
+                        <tr>
+                            <td>@sportEvent.EventName</td>
+                            <td>@sportEvent.EventDate.ToShortDateString()</td>
+                            <td>@sportEvent.EventType</td>
+                            <td class="text-end">
+                                <a asp-page="/SportEvents/Edit" asp-route-id="@sportEvent.Id" class="btn btn-outline-dark custom-link"><i class="fa-solid fa-pencil"></i></a>
+                                <a asp-page="/SportEvents/Delete" asp-route-id="@sportEvent.Id" asp-route-organizerId="@Model.Organizer.Id" class="btn btn-danger custom-link"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+
+<a asp-page="./Index" asp-route-pageUrl="@Model.LastPageUrl" class="btn btn-secondary">Back to Organizers</a>
